@@ -23,10 +23,10 @@ O esquema foi modelado do DER até a **3ª Forma Normal (3FN)**, resultando em *
 ## Diagramas
 
 ### Modelo Conceitual (DER)
-![DER Estética Automotiva](diagrams/der_conceitual.png)
+![DER Estética Automotiva](diagramas/der_conceitual.png)
 
 ### Modelo Relacional
-![Modelo Relacional](diagrams/modelo_relacional.png)
+![Modelo Relacional](diagramas/modelo_relacional.png)
 
 ## Organização do repositório
 
