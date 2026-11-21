@@ -1,6 +1,7 @@
 use ESTETICA_AUTOMOTIVA;
 go
 
+-- Consulta 1: OS concluídas em outubro de 2026 com veículo e funcionário, escrita na sintaxe antiga e no INNER JOIN padrão para comparar.
 select os.Num_OS, os.Data_Abertura, v.Placa, v.Modelo, f.Nome as Funcionario
 from O_S os, VEICULO v, FUNCIONARIO f
 where os.Placa = v.Placa
@@ -18,6 +19,7 @@ and os.Data_Abertura between '2026-10-01' and '2026-10-31'
 order by os.Data_Abertura;
 go
 
+-- Consulta 2: Clientes cadastrados que ainda não têm nenhum veículo vinculado, encontrados com LEFT JOIN e IS NULL.
 select c.ID_Cliente,
 coalesce(pf.Nome, pj.Razao_Social) as Cliente,
 c.Tipo_Cliente,
@@ -29,6 +31,7 @@ left join PESSOA_JURIDICA pj on pj.ID_Cliente = c.ID_Cliente
 where v.Placa is null;
 go
 
+-- Consulta 3: Total de vendas e faturamento de cada serviço com RIGHT JOIN, trazendo até os que nunca foram vendidos.
 SELECT s.COD_Servico,
 s.Descricao,
 s.Valor_Atual,
@@ -40,6 +43,7 @@ group by s.COD_Servico, s.Descricao, s.Valor_Atual
 order by Total_Faturado desc;
 go
 
+-- Consulta 4: Checa com FULL OUTER JOIN e IS NOT NULL se algum cliente caiu em PESSOA_FISICA e PESSOA_JURIDICA ao mesmo tempo.
 select c.ID_Cliente,
 c.Tipo_Cliente,
 case when pf.ID_Cliente is not null then 'CPF' else 'CNPJ' end as Documento,
@@ -53,6 +57,7 @@ inner join CLIENTE c on c.ID_Cliente = coalesce(pf.ID_Cliente, pj.ID_Cliente)
 order by c.ID_Cliente;
 go
 
+-- Consulta 5: Lista os funcionários com o nome do supervisor direto e quantas OS cada um atendeu, com auto-relacionamento.
 SELECT f.Matricula,
 f.Nome as Funcionario,
 f.Cargo,
@@ -64,6 +69,7 @@ left join FUNCIONARIO s on s.Matricula = f.Matricula_Supervisor
 order by s.Nome, f.Nome;
 go
 
+-- Consulta 6: Serviços de códigos 3 a 7 feitos entre setembro e outubro de 2026 em OS concluídas ou em andamento, só em carros com cor preenchida, filtrados com BETWEEN, IN e IS NOT NULL.
 select os.Num_OS, os.Data_Abertura, v.Placa, v.Modelo, v.Cor,
 s.Descricao as Servico, i.Valor_Cobrado
 from O_S os
@@ -77,6 +83,7 @@ and v.Cor is not null
 order by os.Data_Abertura;
 go
 
+-- Consulta 7: Funcionários que não pegaram nenhuma OS em outubro de 2026, combinando NOT IN e BETWEEN.
 SELECT f.Matricula, f.Nome, f.Cargo
 from FUNCIONARIO f
 where f.Matricula not in (select os.Matricula_Func
@@ -85,6 +92,7 @@ where os.Data_Abertura between '2026-10-01' and '2026-10-31')
 order by f.Nome;
 go
 
+-- Consulta 8: Busca clientes com celular de SP (11) 9____-____, nome com "a" na segunda letra ou empresa terminando em "Ltda", usando LIKE com % e _.
 select coalesce(pf.Nome, pj.Razao_Social) as Cliente,
 t.Numero,
 case
@@ -102,6 +110,7 @@ or pj.Razao_Social like '%Ltda'
 order by Cliente;
 go
 
+-- Consulta 9: Ranking de faturamento por funcionário em OS concluídas, com uma CTE para comparar cada um com a média da equipe.
 with Faturamento as (
 select f.Matricula,
 f.Nome,
@@ -126,6 +135,7 @@ from Faturamento
 order by Posicao;
 go
 
+-- Consulta 10: Organograma da equipe montado com CTE recursiva, mostrando a hierarquia completa a partir da gerência.
 with Hierarquia as (
 select Matricula, Nome, Cargo,
 0 as Nivel,
@@ -148,3 +158,4 @@ Caminho
 from Hierarquia
 order by Caminho;
 go
+

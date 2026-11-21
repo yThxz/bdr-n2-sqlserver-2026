@@ -1,4 +1,4 @@
-use ESTETICA_AUTOMOTIVA;
+use ESTETICA_AUTOMOTIVA
 go
 
 INSERT INTO CLIENTE (ID_Cliente, Data_Cadastro, Tipo_Cliente) VALUES
@@ -13,7 +13,7 @@ INSERT INTO CLIENTE (ID_Cliente, Data_Cadastro, Tipo_Cliente) VALUES
 (9, '2025-01-15', 'PJ'),
 (10, '2025-03-22', 'PJ'),
 (11, '2025-07-01', 'PJ'),
-(12, '2026-02-10', 'PJ');
+(12, '2026-02-10', 'PJ')
 
 insert into PESSOA_FISICA (ID_Cliente, CPF, RG, Nome, DT_Nascimento) values
 (1, '111.222.333-44', '12.345.678-9', 'João Silva', '1990-05-20'),
@@ -23,13 +23,13 @@ insert into PESSOA_FISICA (ID_Cliente, CPF, RG, Nome, DT_Nascimento) values
 (5, '555.666.777-88', NULL, 'Ricardo Gomes', '1978-03-30'),
 (6, '666.777.888-99', '56.789.012-3', 'Juliana Martins', '2000-09-08'),
 (7, '777.888.999-00', NULL, 'Bruno Ferreira', '1996-12-25'),
-(8, '888.999.000-11', '78.901.234-5', 'Camila Nunes', NULL);
+(8, '888.999.000-11', '78.901.234-5', 'Camila Nunes', NULL)
 
 INSERT INTO PESSOA_JURIDICA (ID_Cliente, CNPJ, Razao_Social, Inscricao_estadual) VALUES
 (9, '12.345.678/0001-90', 'Transportadora Rápida Ltda', NULL),
 (10, '23.456.789/0001-01', 'Locadora Via Sul Ltda', '110.042.490.114'),
 (11, '34.567.890/0001-12', 'Auto Escola Direção Certa ME', '635.112.908.110'),
-(12, '45.678.901/0001-23', 'Imobiliária Lar Ideal Ltda', NULL);
+(12, '45.678.901/0001-23', 'Imobiliária Lar Ideal Ltda', NULL)
 
 insert into TELEFONE_CLIENTE (ID_Cliente, Numero) values
 (1, '(11) 98888-7777'),
@@ -44,7 +44,7 @@ insert into TELEFONE_CLIENTE (ID_Cliente, Numero) values
 (9, '(11) 98123-4567'),
 (10, '(11) 3333-4444'),
 (11, '(11) 2222-5555'),
-(12, '(11) 97654-3210');
+(12, '(11) 97654-3210')
 
 INSERT INTO VEICULO (Placa, ID_Cliente, Marca, Modelo, Ano, Cor) VALUES
 ('ABC1234', 1, 'Renault', 'Clio', 2007, 'Prata'),
@@ -61,7 +61,7 @@ INSERT INTO VEICULO (Placa, ID_Cliente, Marca, Modelo, Ano, Cor) VALUES
 ('LOC1A23', 10, 'Fiat', 'Mobi', 2023, 'Prata'),
 ('LOC2B34', 10, 'Renault', 'Kwid', 2024, 'Branco'),
 ('AUT5E90', 11, 'Volkswagen', 'Polo', 2022, 'Branco'),
-('IMO6G12', 12, 'Toyota', 'Hilux', 2021, 'Preto');
+('IMO6G12', 12, 'Toyota', 'Hilux', 2021, 'Preto')
 
 insert into FUNCIONARIO (Matricula, Nome, Cargo, Salario, Matricula_Supervisor) values
 (1, 'Carlos Mendes', 'Gerente', 7000.00, NULL),
@@ -71,7 +71,7 @@ insert into FUNCIONARIO (Matricula, Nome, Cargo, Salario, Matricula_Supervisor) 
 (5, 'Diego Ramos', 'Lavador', 2200.00, 2),
 (6, 'Larissa Prado', 'Polidora', 2800.00, 3),
 (7, 'Marcelo Dias', 'Higienizador', 2500.00, 3),
-(8, 'Patrícia Lopes', 'Atendente', 2100.00, 1);
+(8, 'Patrícia Lopes', 'Atendente', 2100.00, 1)
 
 INSERT INTO SERVICO (COD_Servico, Descricao, Valor_Atual) VALUES
 (1, 'Lavagem Simples', 50.00),
@@ -83,7 +83,7 @@ INSERT INTO SERVICO (COD_Servico, Descricao, Valor_Atual) VALUES
 (7, 'Hidratação de Couro', 180.00),
 (8, 'Lavagem de Motor', 120.00),
 (9, 'Película Automotiva', 600.00),
-(10, 'Revitalização de Faróis', 140.00);
+(10, 'Revitalização de Faróis', 140.00)
 
 insert into O_S (Num_OS, Placa, Matricula_Func, Data_Abertura, Status) values
 (1, 'ABC1234', 4, '2026-08-04', 'Concluída'),
@@ -105,7 +105,7 @@ insert into O_S (Num_OS, Placa, Matricula_Func, Data_Abertura, Status) values
 (17, 'FRT2B45', 2, '2026-11-09', 'Andamento'),
 (18, 'RTY9C21', 6, '2026-11-12', 'Andamento'),
 (19, 'BRA2E19', 4, '2026-11-16', 'Aberta'),
-(20, 'QWE5678', 5, '2026-11-17', 'Aberta');
+(20, 'QWE5678', 5, '2026-11-17', 'Aberta')
 
 INSERT INTO ITEM_OS (Num_OS, COD_Servico, Valor_Cobrado) VALUES
 (1, 2, 80.00), (1, 8, 120.00),
@@ -127,7 +127,7 @@ INSERT INTO ITEM_OS (Num_OS, COD_Servico, Valor_Cobrado) VALUES
 (17, 2, 72.00),
 (18, 5, 850.00),
 (19, 1, 50.00),
-(20, 3, 230.00);
+(20, 3, 230.00)
 go
 
 select 'CLIENTE' as Tabela, count(*) as Linhas from CLIENTE
@@ -138,5 +138,5 @@ union all select 'VEICULO', count(*) from VEICULO
 union all select 'FUNCIONARIO', count(*) from FUNCIONARIO
 union all select 'SERVICO', count(*) from SERVICO
 union all select 'O_S', count(*) from O_S
-union all select 'ITEM_OS', count(*) from ITEM_OS;
+union all select 'ITEM_OS', count(*) from ITEM_OS
 go

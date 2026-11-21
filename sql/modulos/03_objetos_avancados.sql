@@ -158,14 +158,6 @@ where i.name like 'IX_%'
 order by t.name;
 go
 
-exec usp_Abrir_OS @Placa = 'TST9A01',@Matricula = 901,
-    @Cod_Servico = 901;
-go
-
-select *
-  from vw_Historico_OS where Placa = 'TST9A01';
-go
-
 begin try
 exec usp_Abrir_OS @Placa = 'DFG4321', @Matricula = 7, @Cod_Servico = 6;
 select * from vw_Historico_OS where Placa = 'DFG4321';
